@@ -1,0 +1,19 @@
+{
+  "name": "genesis-general",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll",
+    "build": "tsc",
+    "build-push": "tsc && cp -rf ./package*.json ../dist/ && git add . && git commit -m \"build\" && git push && cd ../dist/ && git add . && git commit -m \"build\" && git push"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3"
+  }
+}
