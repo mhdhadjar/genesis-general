@@ -224,7 +224,7 @@ export const truncate = (input: any, max: number = 256, side: "start" | "center"
  * @param input string or number to add zero.
  * @param input expected number length default is 2.
  * */
-const padZero = (input: any, pad: number = 2) => {
+export const padZero = (input: any, pad: number = 2) => {
   if (!input) return "";
   if (typeof input !== "number") input = parseFloat(input.toString().trim());
   if (isNaN(input)) return "";
@@ -238,7 +238,7 @@ const padZero = (input: any, pad: number = 2) => {
  * @param input the source number.
  * @param input flag to check.
  * */
-const hasFlag = (input: any, flag: number): boolean => {
+export const hasFlag = (input: any, flag: number): boolean => {
   return (input & flag) == flag;
 };
 
@@ -246,7 +246,7 @@ const hasFlag = (input: any, flag: number): boolean => {
  * Convert persian rials value to a tooman string.
  * @param input value to convert.
  * */
-const toPersianToomanString = (input: any): string => {
+export const toPersianToomanString = (input: any): string => {
   if (!input) return "";
   if (typeof input !== "number") input = parseInt(replaceNumbersToEnglish(input));
   if (isNaN(input)) return "";
@@ -300,7 +300,7 @@ const toPersianToomanString = (input: any): string => {
  * @param input date to convert.
  * @returns returns an object with jalali year, month and day.
  * */
-const toJalaliDate = (input: Date): { year: number; month: number; day: number } => {
+export const toJalaliDate = (input: Date): { year: number; month: number; day: number } => {
   const breaks = [-61, 9, 38, 199, 426, 686, 756, 818, 1111, 1181, 1210, 1635, 2060, 2097, 2192, 2262, 2324, 2394, 2456, 3178];
 
   const calculateJalaliLeap = (jalaliYear: number, withoutLeap: boolean) => {
@@ -404,7 +404,7 @@ const toJalaliDate = (input: Date): { year: number; month: number; day: number }
 /**
  * Check if two date objects are in a same day or not.
  * */
-const isSameDay = (date1: Date, date2: Date): boolean => {
+export const isSameDay = (date1: Date, date2: Date): boolean => {
   if (!date1 && !date2) return false;
   if (!date1 || !date2) return false;
   const time1 = date1.getTime();
@@ -421,7 +421,7 @@ const isSameDay = (date1: Date, date2: Date): boolean => {
 /**
  * Add some days to a date object.
  * */
-const addDays = (date: Date, value: number): Date => {
+export const addDays = (date: Date, value: number): Date => {
   if (isNaN(date.getTime())) return date;
   return new Date(date.getTime() + value * 1000 * 60 * 60 * 24);
 };
@@ -429,7 +429,7 @@ const addDays = (date: Date, value: number): Date => {
 /**
  * Add some hours to a date object.
  * */
-const addHours = (date: Date, value: number): Date => {
+export const addHours = (date: Date, value: number): Date => {
   if (isNaN(date.getTime())) return date;
   return new Date(date.getTime() + value * 1000 * 60 * 60);
 };
@@ -437,7 +437,7 @@ const addHours = (date: Date, value: number): Date => {
 /**
  * Add some minutes to a date object.
  * */
-const addMinutes = (date: Date, value: number): Date => {
+export const addMinutes = (date: Date, value: number): Date => {
   if (isNaN(date.getTime())) return date;
   return new Date(date.getTime() + value * 1000 * 60);
 };
@@ -445,7 +445,7 @@ const addMinutes = (date: Date, value: number): Date => {
 /**
  * Add some seconds to a date object.
  * */
-const addSeconds = (date: Date, value: number): Date => {
+export const addSeconds = (date: Date, value: number): Date => {
   if (isNaN(date.getTime())) return date;
   return new Date(date.getTime() + value * 1000);
 };
@@ -453,7 +453,7 @@ const addSeconds = (date: Date, value: number): Date => {
 /**
  * Add some milliseconds to a date object.
  * */
-const addMilliseconds = (date: Date, value: number): Date => {
+export const addMilliseconds = (date: Date, value: number): Date => {
   if (isNaN(date.getTime())) return date;
   return new Date(date.getTime() + value);
 };
@@ -461,7 +461,7 @@ const addMilliseconds = (date: Date, value: number): Date => {
 /**
  * Convert date to string that indicate the distance from now.
  * */
-const toTimeAgo = (date: Date, culture: string = "en-US"): string => {
+export const toTimeAgo = (date: Date, culture: string = "en-US"): string => {
   if (isNaN(date.getTime())) return "";
   const isPersian = culture === "fa-IR";
   const dic = {
@@ -514,7 +514,7 @@ const toTimeAgo = (date: Date, culture: string = "en-US"): string => {
 /**
  * Convert date to custom date format supports English and Persian cultures.
  * */
-const toCustomLocaleString = (date: Date, format: string = "yyyy/MM/dd hh:mm", culture: string = "en-US"): string => {
+export const toCustomLocaleString = (date: Date, format: string = "yyyy/MM/dd hh:mm", culture: string = "en-US"): string => {
   if (isNaN(date.getTime())) return "";
 
   let year = date.getFullYear();
