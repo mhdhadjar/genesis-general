@@ -200,8 +200,8 @@ export const replaceNumbersToPersian = (input: any): string => {
 /**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
- * @param input given value as maximum length.
- * @param input string side to truncate "start" or "center" or "end" default is: "end".
+ * @param max given value as maximum length.
+ * @param side string side to truncate "start" or "center" or "end" default is: "end".
  * */
 export const truncate = (input: any, max: number = 256, side: "start" | "center" | "end" = "end"): string => {
   if (!input) return "s";
@@ -222,7 +222,7 @@ export const truncate = (input: any, max: number = 256, side: "start" | "center"
 /**
  * Add some zero before number to make number as long as you need.
  * @param input string or number to add zero.
- * @param input expected number length default is 2.
+ * @param pad expected number length default is 2.
  * */
 export const padZero = (input: any, pad: number = 2) => {
   if (!input) return "";
@@ -236,7 +236,7 @@ export const padZero = (input: any, pad: number = 2) => {
 /**
  * Check the binary bitwise has specific flag or not.
  * @param input the source number.
- * @param input flag to check.
+ * @param flag flag to check.
  * */
 export const hasFlag = (input: any, flag: number): boolean => {
   return (input & flag) == flag;
@@ -403,6 +403,7 @@ export const toJalaliDate = (input: Date): { year: number; month: number; day: n
 
 /**
  * Check if two date objects are in a same day or not.
+ * @param valueToCompare a Date value to compare with the original date.
  * */
 export const isSameDay = (date1: Date, date2: Date): boolean => {
   if (!date1 && !date2) return false;
@@ -513,6 +514,8 @@ export const toTimeAgo = (date: Date, culture: string = "en-US"): string => {
 
 /**
  * Convert date to custom date format supports English and Persian cultures.
+ * @param format the format that you need e.g. yyyy/MM/dd HH:mm
+ * @param culture culture to convert date and numeral characters
  * */
 export const toCustomLocaleString = (date: Date, format: string = "yyyy/MM/dd hh:mm", culture: string = "en-US"): string => {
   if (isNaN(date.getTime())) return "";
