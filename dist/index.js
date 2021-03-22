@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.truncate = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = void 0;
+exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.isSameDay = exports.toJalaliDate = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = void 0;
 /**
  * Converts anything to date.
  * @param input source object to convert.
@@ -214,8 +214,8 @@ exports.replaceNumbersToPersian = replaceNumbersToPersian;
 /**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
- * @param input given value as maximum length.
- * @param input string side to truncate "start" or "center" or "end" default is: "end".
+ * @param max given value as maximum length.
+ * @param side string side to truncate "start" or "center" or "end" default is: "end".
  * */
 var truncate = function (input, max, side) {
     if (max === void 0) { max = 256; }
@@ -240,7 +240,7 @@ exports.truncate = truncate;
 /**
  * Add some zero before number to make number as long as you need.
  * @param input string or number to add zero.
- * @param input expected number length default is 2.
+ * @param pad expected number length default is 2.
  * */
 var padZero = function (input, pad) {
     if (pad === void 0) { pad = 2; }
@@ -254,14 +254,16 @@ var padZero = function (input, pad) {
     var parts = num.split(".");
     return parts[0].padStart(pad, "0") + (parts.length > 1 ? "." + parts[1] : "");
 };
+exports.padZero = padZero;
 /**
  * Check the binary bitwise has specific flag or not.
  * @param input the source number.
- * @param input flag to check.
+ * @param flag flag to check.
  * */
 var hasFlag = function (input, flag) {
     return (input & flag) == flag;
 };
+exports.hasFlag = hasFlag;
 /**
  * Convert persian rials value to a tooman string.
  * @param input value to convert.
@@ -312,6 +314,7 @@ var toPersianToomanString = function (input) {
     }
     return exports.replaceNumbersToPersian(result);
 };
+exports.toPersianToomanString = toPersianToomanString;
 /**
  * Convert Georgian date to Jalai (persian) date.
  * @param input date to convert.
@@ -409,8 +412,10 @@ var toJalaliDate = function (input) {
     };
     return numericToJalali(georgianToNumeric(input.getFullYear(), input.getMonth() + 1, input.getDate()));
 };
+exports.toJalaliDate = toJalaliDate;
 /**
  * Check if two date objects are in a same day or not.
+ * @param valueToCompare a Date value to compare with the original date.
  * */
 var isSameDay = function (date1, date2) {
     if (!date1 && !date2)
@@ -429,6 +434,7 @@ var isSameDay = function (date1, date2) {
     date2.setHours(0, 0, 0, 0);
     return date1.getTime() === date2.getTime();
 };
+exports.isSameDay = isSameDay;
 /**
  * Add some days to a date object.
  * */
@@ -437,6 +443,7 @@ var addDays = function (date, value) {
         return date;
     return new Date(date.getTime() + value * 1000 * 60 * 60 * 24);
 };
+exports.addDays = addDays;
 /**
  * Add some hours to a date object.
  * */
@@ -445,6 +452,7 @@ var addHours = function (date, value) {
         return date;
     return new Date(date.getTime() + value * 1000 * 60 * 60);
 };
+exports.addHours = addHours;
 /**
  * Add some minutes to a date object.
  * */
@@ -453,6 +461,7 @@ var addMinutes = function (date, value) {
         return date;
     return new Date(date.getTime() + value * 1000 * 60);
 };
+exports.addMinutes = addMinutes;
 /**
  * Add some seconds to a date object.
  * */
@@ -461,6 +470,7 @@ var addSeconds = function (date, value) {
         return date;
     return new Date(date.getTime() + value * 1000);
 };
+exports.addSeconds = addSeconds;
 /**
  * Add some milliseconds to a date object.
  * */
@@ -469,6 +479,7 @@ var addMilliseconds = function (date, value) {
         return date;
     return new Date(date.getTime() + value);
 };
+exports.addMilliseconds = addMilliseconds;
 /**
  * Convert date to string that indicate the distance from now.
  * */
@@ -524,8 +535,11 @@ var toTimeAgo = function (date, culture) {
     var result = value + " " + unit + " " + direction;
     return isPersian ? exports.replaceNumbersToPersian(result) : result;
 };
+exports.toTimeAgo = toTimeAgo;
 /**
  * Convert date to custom date format supports English and Persian cultures.
+ * @param format the format that you need e.g. yyyy/MM/dd HH:mm
+ * @param culture culture to convert date and numeral characters
  * */
 var toCustomLocaleString = function (date, format, culture) {
     if (format === void 0) { format = "yyyy/MM/dd hh:mm"; }
@@ -562,7 +576,7 @@ var toCustomLocaleString = function (date, format, culture) {
         ];
         shortWeekDays = longWeekDays;
         amPm = ["صبح", "عصر"];
-        var jalali = toJalaliDate(date);
+        var jalali = exports.toJalaliDate(date);
         year = jalali.year;
         month = jalali.month;
         day = jalali.day;
@@ -590,7 +604,7 @@ var toCustomLocaleString = function (date, format, culture) {
                 newVal = shortMonthNames[month - 1] || datePart;
                 break;
             case "MM":
-                newVal = padZero(month, 2) || datePart;
+                newVal = exports.padZero(month, 2) || datePart;
                 break;
             case "M":
                 newVal = month.toString() || datePart;
@@ -605,33 +619,33 @@ var toCustomLocaleString = function (date, format, culture) {
                 break;
             case "dd":
             case "DD":
-                newVal = padZero(day, 2) || datePart;
+                newVal = exports.padZero(day, 2) || datePart;
                 break;
             case "d":
             case "D":
                 newVal = day.toString() || datePart;
                 break;
             case "HH":
-                newVal = padZero(hours, 2) || datePart;
+                newVal = exports.padZero(hours, 2) || datePart;
                 break;
             case "H":
                 newVal = hours.toString() || datePart;
                 break;
             case "hh":
-                newVal = padZero(twelveHours, 2) || datePart;
+                newVal = exports.padZero(twelveHours, 2) || datePart;
                 break;
             case "h":
                 newVal = twelveHours.toString() || datePart;
                 break;
             case "mm":
-                newVal = padZero(minutes, 2) || datePart;
+                newVal = exports.padZero(minutes, 2) || datePart;
                 break;
             case "m":
                 newVal = minutes.toString() || datePart;
                 break;
             case "SS":
             case "ss":
-                newVal = padZero(seconds, 2) || datePart;
+                newVal = exports.padZero(seconds, 2) || datePart;
                 break;
             case "S":
             case "s":
@@ -654,6 +668,7 @@ var toCustomLocaleString = function (date, format, culture) {
         return exports.replaceNumbersToPersian(result);
     return result;
 };
+exports.toCustomLocaleString = toCustomLocaleString;
 exports.default = {
     toDate: exports.toDate,
     splitCamelCase: exports.splitCamelCase,
@@ -668,16 +683,16 @@ exports.default = {
     replaceNumbersToEnglish: exports.replaceNumbersToEnglish,
     replaceNumbersToPersian: exports.replaceNumbersToPersian,
     truncate: exports.truncate,
-    padZero: padZero,
-    hasFlag: hasFlag,
-    toPersianToomanString: toPersianToomanString,
-    toJalaliDate: toJalaliDate,
-    isSameDay: isSameDay,
-    addDays: addDays,
-    addHours: addHours,
-    addMinutes: addMinutes,
-    addSeconds: addSeconds,
-    addMilliseconds: addMilliseconds,
-    toTimeAgo: toTimeAgo,
-    toCustomLocaleString: toCustomLocaleString,
+    padZero: exports.padZero,
+    hasFlag: exports.hasFlag,
+    toPersianToomanString: exports.toPersianToomanString,
+    toJalaliDate: exports.toJalaliDate,
+    isSameDay: exports.isSameDay,
+    addDays: exports.addDays,
+    addHours: exports.addHours,
+    addMinutes: exports.addMinutes,
+    addSeconds: exports.addSeconds,
+    addMilliseconds: exports.addMilliseconds,
+    toTimeAgo: exports.toTimeAgo,
+    toCustomLocaleString: exports.toCustomLocaleString,
 };

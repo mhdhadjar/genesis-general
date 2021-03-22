@@ -65,10 +65,72 @@ export declare const replaceNumbersToPersian: (input: any) => string;
 /**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
- * @param input given value as maximum length.
- * @param input string side to truncate "start" or "center" or "end" default is: "end".
+ * @param max given value as maximum length.
+ * @param side string side to truncate "start" or "center" or "end" default is: "end".
  * */
 export declare const truncate: (input: any, max?: number, side?: "start" | "center" | "end") => string;
+/**
+ * Add some zero before number to make number as long as you need.
+ * @param input string or number to add zero.
+ * @param pad expected number length default is 2.
+ * */
+export declare const padZero: (input: any, pad?: number) => string;
+/**
+ * Check the binary bitwise has specific flag or not.
+ * @param input the source number.
+ * @param flag flag to check.
+ * */
+export declare const hasFlag: (input: any, flag: number) => boolean;
+/**
+ * Convert persian rials value to a tooman string.
+ * @param input value to convert.
+ * */
+export declare const toPersianToomanString: (input: any) => string;
+/**
+ * Convert Georgian date to Jalai (persian) date.
+ * @param input date to convert.
+ * @returns returns an object with jalali year, month and day.
+ * */
+export declare const toJalaliDate: (input: Date) => {
+    year: number;
+    month: number;
+    day: number;
+};
+/**
+ * Check if two date objects are in a same day or not.
+ * @param valueToCompare a Date value to compare with the original date.
+ * */
+export declare const isSameDay: (date1: Date, date2: Date) => boolean;
+/**
+ * Add some days to a date object.
+ * */
+export declare const addDays: (date: Date, value: number) => Date;
+/**
+ * Add some hours to a date object.
+ * */
+export declare const addHours: (date: Date, value: number) => Date;
+/**
+ * Add some minutes to a date object.
+ * */
+export declare const addMinutes: (date: Date, value: number) => Date;
+/**
+ * Add some seconds to a date object.
+ * */
+export declare const addSeconds: (date: Date, value: number) => Date;
+/**
+ * Add some milliseconds to a date object.
+ * */
+export declare const addMilliseconds: (date: Date, value: number) => Date;
+/**
+ * Convert date to string that indicate the distance from now.
+ * */
+export declare const toTimeAgo: (date: Date, culture?: string) => string;
+/**
+ * Convert date to custom date format supports English and Persian cultures.
+ * @param format the format that you need e.g. yyyy/MM/dd HH:mm
+ * @param culture culture to convert date and numeral characters
+ * */
+export declare const toCustomLocaleString: (date: Date, format?: string, culture?: string) => string;
 declare const _default: {
     toDate: (input: any, defaultValue?: Date | undefined) => Date | undefined;
     splitCamelCase: (input: any, separator?: string) => string;
