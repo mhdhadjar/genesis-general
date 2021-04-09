@@ -1,4 +1,9 @@
 /**
+ * Replace \n characters to &lt;br /&gt; to render as html.
+ * @param input The input value.
+ */
+export declare const plainTextToHtml: (input: any) => string;
+/**
  * Converts anything to date.
  * @param input source object to convert.
  * @param defaultValue If conversion failed, then returns this value.
@@ -132,6 +137,7 @@ export declare const toTimeAgo: (date: Date, culture?: string) => string;
  * */
 export declare const toCustomLocaleString: (date: Date, format?: string, culture?: string) => string;
 declare const _default: {
+    plainTextToHtml: (input: any) => string;
     toDate: (input: any, defaultValue?: Date | undefined) => Date | undefined;
     splitCamelCase: (input: any, separator?: string) => string;
     digitGrouping: (input: any) => string;

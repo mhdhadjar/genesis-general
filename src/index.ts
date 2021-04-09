@@ -1,4 +1,13 @@
 /**
+ * Replace \n characters to &lt;br /&gt; to render as html.
+ * @param input The input value.
+ */
+export const plainTextToHtml = function (input: any): string {
+  if (!input) return "";
+  return input.toString().replace(/\n/g, "<br />");
+};
+
+/**
  * Converts anything to date.
  * @param input source object to convert.
  * @param defaultValue If conversion failed, then returns this value.
@@ -661,6 +670,7 @@ export const toCustomLocaleString = (date: Date, format: string = "yyyy/MM/dd hh
 };
 
 export default {
+  plainTextToHtml,
   toDate,
   splitCamelCase,
   digitGrouping,

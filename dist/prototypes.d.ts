@@ -1,6 +1,10 @@
 declare const Genesis: any;
 interface String {
     /**
+     * Replace \n characters to <br /> to render as html.
+     */
+    plainTextToHtml(): string;
+    /**
      * Converts string to date.
      * @param defaultValue If conversion failed, then returns this value.
      */

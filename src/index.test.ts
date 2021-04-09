@@ -1,5 +1,14 @@
 import Genesis from "./index";
 
+it("plainTextToHtml", () => {
+  expect(Genesis.plainTextToHtml("test")).toEqual("test");
+  expect(Genesis.plainTextToHtml(null)).toEqual("");
+  expect(Genesis.plainTextToHtml(undefined)).toEqual("");
+  expect(Genesis.plainTextToHtml("")).toEqual("");
+  expect(Genesis.plainTextToHtml("Hi,\nThis is me")).toEqual("Hi,<br />This is me");
+  expect(Genesis.plainTextToHtml("Hi,\nThis is me\nMe too")).toEqual("Hi,<br />This is me<br />Me too");
+});
+
 it("toDate", () => {
   expect(Genesis.toDate("2021-01-01")).toEqual(new Date("2021-01-01T00:00:00.000Z"));
   expect(Genesis.toDate(1612125000000)).toEqual(new Date("2021-01-31T20:30:00.000Z"));

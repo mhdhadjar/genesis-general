@@ -1,5 +1,10 @@
 "use strict";
 var Genesis = require("./index");
+String.prototype.plainTextToHtml = function () {
+    if (!this)
+        return "";
+    return this.toString().replace(/\n/g, "<br />");
+};
 String.prototype.toDate = function (defaultDate) {
     return Genesis.toDate(this, defaultDate);
 };

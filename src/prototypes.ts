@@ -3,6 +3,11 @@ const Genesis = require("./index");
 //#region String Prototypes ##############################################################
 interface String {
   /**
+   * Replace \n characters to <br /> to render as html.
+   */
+  plainTextToHtml(): string;
+
+  /**
    * Converts string to date.
    * @param defaultValue If conversion failed, then returns this value.
    */
@@ -122,6 +127,11 @@ interface String {
    * */
   toPersianToomanString(): string;
 }
+
+String.prototype.plainTextToHtml = function (): string {
+  if (!this) return "";
+  return this.toString().replace(/\n/g, "<br />");
+};
 
 String.prototype.toDate = function (defaultDate?: Date): Date | undefined {
   return Genesis.toDate(this, defaultDate);

@@ -1,5 +1,12 @@
 import "./prototypes";
 
+it("plainTextToHtml", () => {
+  expect("test".plainTextToHtml()).toEqual("test");
+  expect("".plainTextToHtml()).toEqual("");
+  expect("Hi,\nThis is me".plainTextToHtml()).toEqual("Hi,<br />This is me");
+  expect("Hi,\nThis is me\nMe too".plainTextToHtml()).toEqual("Hi,<br />This is me<br />Me too");
+});
+
 it("toDate", () => {
   expect("2021-01-01".toDate()).toEqual(new Date("2021-01-01T00:00:00.000Z"));
   expect((1612125000000).toDate()).toEqual(new Date("2021-01-31T20:30:00.000Z"));
@@ -22,8 +29,7 @@ it("digitGrouping", () => {
   expect("2700000".digitGrouping()).toBe("2,700,000");
   expect("2,700,000".digitGrouping()).toBe("2,700,000");
   expect("۲۷۵۰۰۰۰".digitGrouping()).toBe("2,750,000");
-
-  expect("aaa".digitGrouping()).toBe("");
+  expect("Some String".digitGrouping()).toBe("");
 });
 
 it("toDecimal", () => {

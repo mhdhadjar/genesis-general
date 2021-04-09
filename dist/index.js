@@ -1,6 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.isSameDay = exports.toJalaliDate = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = void 0;
+exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.isSameDay = exports.toJalaliDate = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
+/**
+ * Replace \n characters to &lt;br /&gt; to render as html.
+ * @param input The input value.
+ */
+var plainTextToHtml = function (input) {
+    if (!input)
+        return "";
+    return input.toString().replace(/\n/g, "<br />");
+};
+exports.plainTextToHtml = plainTextToHtml;
 /**
  * Converts anything to date.
  * @param input source object to convert.
@@ -670,6 +680,7 @@ var toCustomLocaleString = function (date, format, culture) {
 };
 exports.toCustomLocaleString = toCustomLocaleString;
 exports.default = {
+    plainTextToHtml: exports.plainTextToHtml,
     toDate: exports.toDate,
     splitCamelCase: exports.splitCamelCase,
     digitGrouping: exports.digitGrouping,
