@@ -876,6 +876,10 @@
     "exec-sh" "^0.3.2"
     "minimist" "^1.2.0"
 
+"@genesis/general@github:mhdhadjar/genesis-general":
+  "resolved" "git+ssh://git@github.com/mhdhadjar/genesis-general.git#710a0182c65c996d1ab2d48632c76509325fcba5"
+  "version" "1.0.0"
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   "integrity" "sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ=="
   "resolved" "https://registry.npmjs.org/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz"

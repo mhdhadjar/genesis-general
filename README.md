@@ -4,7 +4,7 @@ Genesis is a helper library that provides useful methods and prototypes for Java
 
 ## Installing
 ```
-npm i @genesis/general@https://github.com/mhdhadjar/genesis-general.git
+npm i @genesis/general@github:mhdhadjar/genesis-general
 ```
 
 ### Prototypes
