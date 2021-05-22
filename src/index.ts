@@ -211,7 +211,7 @@ export const replaceNumbersToPersian = (input: any): string => {
  * @param input value to convert.
  * @param cultureName target number format.
  * */
-export const replaceNumbersToLocalized = (input: any, cultureName: string): string => {
+export const replaceNumbersToLocalized = (input: any, cultureName?: string): string => {
   if (!input) return "";
 
   let s = input.toString();
