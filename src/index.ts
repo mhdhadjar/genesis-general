@@ -207,6 +207,33 @@ export const replaceNumbersToPersian = (input: any): string => {
 };
 
 /**
+ * Replace all of numeral characters to specific culture numeral characters.
+ * @param input value to convert.
+ * @param cultureName target number format.
+ * */
+export const replaceNumbersToLocalized = (input: any, cultureName: string): string => {
+  if (!input) return "";
+
+  let s = input.toString();
+
+  if (!cultureName) return s;
+  cultureName = cultureName.toString().toLowerCase().trim();
+  const parts = cultureName.split("-");
+  if (parts.length !== 2) return s;
+
+  const lang = parts[0];
+
+  switch (lang) {
+    case "fa":
+      return replaceNumbersToPersian(s);
+    case "en":
+      return replaceNumbersToEnglish(s);
+    default:
+      return s;
+  }
+};
+
+/**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
  * @param max given value as maximum length.
@@ -683,6 +710,7 @@ export default {
   isValidEmail,
   replaceNumbersToEnglish,
   replaceNumbersToPersian,
+  replaceNumbersToLocalized,
   truncate,
   padZero,
   hasFlag,

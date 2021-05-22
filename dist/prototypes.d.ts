@@ -75,6 +75,10 @@ interface String {
      * */
     replaceNumbersToEnglish(): string;
     /**
+     * Replace all of numeral characters to specific culture numeral characters.
+     * */
+    replaceNumbersToLocalized(cultureName: string): string;
+    /**
      * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
      * */
     truncate(): string;
@@ -134,6 +138,10 @@ interface Number {
      * Replace all of numeral characters to persian numeral characters.
      * */
     replaceNumbersToPersian(): string;
+    /**
+     * Replace all of numeral characters to specific culture numeral characters.
+     * */
+    replaceNumbersToLocalized(cultureName: string): string;
     /**
      * Add some zero before number to make number as long as you need.
      * @param pad expected number length default is 2.

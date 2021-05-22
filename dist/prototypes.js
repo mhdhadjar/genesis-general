@@ -46,6 +46,9 @@ String.prototype.replaceNumbersToPersian = function () {
 String.prototype.replaceNumbersToEnglish = function () {
     return Genesis.replaceNumbersToEnglish(this);
 };
+String.prototype.replaceNumbersToLocalized = function (cultureName) {
+    return Genesis.replaceNumbersToLocalized(this, cultureName);
+};
 String.prototype.truncate = function (max, side) {
     if (max === void 0) { max = 256; }
     if (side === void 0) { side = "end"; }
@@ -78,6 +81,9 @@ Number.prototype.toInt = function () {
 };
 Number.prototype.replaceNumbersToPersian = function () {
     return Genesis.replaceNumbersToPersian(this);
+};
+Number.prototype.replaceNumbersToLocalized = function (cultureName) {
+    return Genesis.replaceNumbersToLocalized(this, cultureName);
 };
 Number.prototype.padZero = function (pad) {
     if (pad === void 0) { pad = 2; }

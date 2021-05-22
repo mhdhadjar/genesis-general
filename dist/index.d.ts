@@ -68,6 +68,12 @@ export declare const replaceNumbersToEnglish: (input: any) => string;
  * */
 export declare const replaceNumbersToPersian: (input: any) => string;
 /**
+ * Replace all of numeral characters to specific culture numeral characters.
+ * @param input value to convert.
+ * @param cultureName target number format.
+ * */
+export declare const replaceNumbersToLocalized: (input: any, cultureName: string) => string;
+/**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
  * @param max given value as maximum length.
@@ -150,6 +156,7 @@ declare const _default: {
     isValidEmail: (input: any) => boolean;
     replaceNumbersToEnglish: (input: any) => string;
     replaceNumbersToPersian: (input: any) => string;
+    replaceNumbersToLocalized: (input: any, cultureName: string) => string;
     truncate: (input: any, max?: number, side?: "start" | "center" | "end") => string;
     padZero: (input: any, pad?: number) => string;
     hasFlag: (input: any, flag: number) => boolean;

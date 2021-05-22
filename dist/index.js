@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.isSameDay = exports.toJalaliDate = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
+exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.isSameDay = exports.toJalaliDate = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToLocalized = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
 /**
  * Replace \n characters to html br tags to render as html.
  * @param input The input value to replace.
@@ -221,6 +221,32 @@ var replaceNumbersToPersian = function (input) {
     return s;
 };
 exports.replaceNumbersToPersian = replaceNumbersToPersian;
+/**
+ * Replace all of numeral characters to specific culture numeral characters.
+ * @param input value to convert.
+ * @param cultureName target number format.
+ * */
+var replaceNumbersToLocalized = function (input, cultureName) {
+    if (!input)
+        return "";
+    var s = input.toString();
+    if (!cultureName)
+        return s;
+    cultureName = cultureName.toString().toLowerCase().trim();
+    var parts = cultureName.split("-");
+    if (parts.length !== 2)
+        return s;
+    var lang = parts[0];
+    switch (lang) {
+        case "fa":
+            return exports.replaceNumbersToPersian(s);
+        case "en":
+            return exports.replaceNumbersToEnglish(s);
+        default:
+            return s;
+    }
+};
+exports.replaceNumbersToLocalized = replaceNumbersToLocalized;
 /**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
@@ -693,6 +719,7 @@ exports.default = {
     isValidEmail: exports.isValidEmail,
     replaceNumbersToEnglish: exports.replaceNumbersToEnglish,
     replaceNumbersToPersian: exports.replaceNumbersToPersian,
+    replaceNumbersToLocalized: exports.replaceNumbersToLocalized,
     truncate: exports.truncate,
     padZero: exports.padZero,
     hasFlag: exports.hasFlag,

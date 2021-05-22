@@ -94,6 +94,11 @@ interface String {
   replaceNumbersToEnglish(): string;
 
   /**
+   * Replace all of numeral characters to specific culture numeral characters.
+   * */
+  replaceNumbersToLocalized(cultureName: string): string;
+
+  /**
    * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
    * */
   truncate(): string;
@@ -185,6 +190,10 @@ String.prototype.replaceNumbersToEnglish = function (): string {
   return Genesis.replaceNumbersToEnglish(this);
 };
 
+String.prototype.replaceNumbersToLocalized = function (cultureName: string): string {
+  return Genesis.replaceNumbersToLocalized(this, cultureName);
+};
+
 String.prototype.truncate = function (max: number = 256, side: "start" | "center" | "end" = "end"): string {
   return Genesis.truncate(this, max, side);
 };
@@ -240,6 +249,11 @@ interface Number {
   replaceNumbersToPersian(): string;
 
   /**
+   * Replace all of numeral characters to specific culture numeral characters.
+   * */
+  replaceNumbersToLocalized(cultureName: string): string;
+
+  /**
    * Add some zero before number to make number as long as you need.
    * @param pad expected number length default is 2.
    * */
@@ -288,6 +302,10 @@ Number.prototype.toInt = function (): number {
 
 Number.prototype.replaceNumbersToPersian = function (): string {
   return Genesis.replaceNumbersToPersian(this);
+};
+
+Number.prototype.replaceNumbersToLocalized = function (cultureName: string): string {
+  return Genesis.replaceNumbersToLocalized(this, cultureName);
 };
 
 Number.prototype.padZero = function (pad: number = 2) {
