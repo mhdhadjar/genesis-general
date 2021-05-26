@@ -107,22 +107,26 @@ it("isValidEmail", () => {
 
 it("replaceNumbersToEnglish", () => {
   expect("۱۲٫۳۳۶".replaceNumbersToEnglish()).toBe("12.336");
+  expect("۰".replaceNumbersToEnglish()).toBe("0");
 });
 
 it("replaceNumbersToPersian", () => {
   expect("12.336".replaceNumbersToPersian()).toBe("۱۲.۳۳۶");
   expect((12.336).replaceNumbersToPersian()).toBe("۱۲.۳۳۶");
   expect((126).replaceNumbersToPersian()).toBe("۱۲۶");
+  expect((0).replaceNumbersToPersian()).toBe("۰");
 });
 
 it("replaceNumbersToLocalized", () => {
   expect("12.336".replaceNumbersToLocalized("fa-IR")).toBe("۱۲.۳۳۶");
   expect((12.336).replaceNumbersToLocalized("fa-IR")).toBe("۱۲.۳۳۶");
   expect((126).replaceNumbersToLocalized("fa-IR")).toBe("۱۲۶");
+  expect((0).replaceNumbersToLocalized("fa-IR")).toBe("۰");
 
   expect("۱۲٫۳۳۶".replaceNumbersToLocalized("en-US")).toBe("12.336");
   expect("۱۲٫۳۳۶".replaceNumbersToLocalized("en-UK")).toBe("12.336");
   expect("۱۲٫۳۳۶".replaceNumbersToLocalized("en-AU")).toBe("12.336");
+  expect("۰".replaceNumbersToLocalized("en-US")).toBe("0");
 });
 
 it("truncate", () => {

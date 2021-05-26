@@ -180,7 +180,7 @@ exports.isValidMobile = isValidMobile;
  * @param input value to convert.
  * */
 var replaceNumbersToEnglish = function (input) {
-    if (!input)
+    if (input == null)
         return "";
     var s = input.toString();
     s = s.replace(/[\s,،]+/g, "");
@@ -205,7 +205,7 @@ exports.replaceNumbersToEnglish = replaceNumbersToEnglish;
  * @param input value to convert.
  * */
 var replaceNumbersToPersian = function (input) {
-    if (!input)
+    if (input == null)
         return "";
     var s = input.toString();
     s = s.replace(/0/g, "۰");
@@ -227,8 +227,8 @@ exports.replaceNumbersToPersian = replaceNumbersToPersian;
  * @param cultureName target number format.
  * */
 var replaceNumbersToLocalized = function (input, cultureName) {
-    if (!input)
-        return "";
+    if (input == null)
+        return input;
     var s = input.toString();
     if (!cultureName)
         return s;

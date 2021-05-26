@@ -127,22 +127,26 @@ it("isValidEmail", () => {
 
 it("replaceNumbersToEnglish", () => {
   expect(Genesis.replaceNumbersToEnglish("۱۲٫۳۳۶")).toBe("12.336");
+  expect(Genesis.replaceNumbersToEnglish("۰")).toBe("0");
 });
 
 it("replaceNumbersToPersian", () => {
   expect(Genesis.replaceNumbersToPersian("12.336")).toBe("۱۲.۳۳۶");
   expect(Genesis.replaceNumbersToPersian(12.336)).toBe("۱۲.۳۳۶");
   expect(Genesis.replaceNumbersToPersian(126)).toBe("۱۲۶");
+  expect(Genesis.replaceNumbersToPersian(0)).toBe("۰");
 });
 
 it("replaceNumbersToLocalized", () => {
   expect(Genesis.replaceNumbersToLocalized("12.336", "fa-IR")).toBe("۱۲.۳۳۶");
   expect(Genesis.replaceNumbersToLocalized(12.336, "fa-IR")).toBe("۱۲.۳۳۶");
   expect(Genesis.replaceNumbersToLocalized(126, "fa-IR")).toBe("۱۲۶");
+  expect(Genesis.replaceNumbersToLocalized(0, "fa-IR")).toBe("۰");
 
   expect(Genesis.replaceNumbersToLocalized("۱۲٫۳۳۶", "en-US")).toBe("12.336");
   expect(Genesis.replaceNumbersToLocalized("۱۲٫۳۳۶", "en-UK")).toBe("12.336");
   expect(Genesis.replaceNumbersToLocalized("۱۲٫۳۳۶", "en-AU")).toBe("12.336");
+  expect(Genesis.replaceNumbersToLocalized("۰", "en-AU")).toBe("0");
 });
 
 it("truncate", () => {

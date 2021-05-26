@@ -164,7 +164,7 @@ export const isValidMobile = (input: any): boolean => {
  * @param input value to convert.
  * */
 export const replaceNumbersToEnglish = (input: any): string => {
-  if (!input) return "";
+  if (input == null) return "";
   let s = input.toString();
   s = s.replace(/[\s,،]+/g, "");
 
@@ -191,7 +191,7 @@ export const replaceNumbersToEnglish = (input: any): string => {
  * @param input value to convert.
  * */
 export const replaceNumbersToPersian = (input: any): string => {
-  if (!input) return "";
+  if (input == null) return "";
   let s = input.toString();
   s = s.replace(/0/g, "۰");
   s = s.replace(/1/g, "۱");
@@ -212,7 +212,7 @@ export const replaceNumbersToPersian = (input: any): string => {
  * @param cultureName target number format.
  * */
 export const replaceNumbersToLocalized = (input: any, cultureName?: string): string => {
-  if (!input) return "";
+  if (input == null) return input;
 
   let s = input.toString();
 
