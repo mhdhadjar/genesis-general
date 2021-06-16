@@ -330,6 +330,9 @@ interface Date {
    * @param valueToCompare a Date value to compare with the original date.
    * */
   isSameDay(valueToCompare: Date): boolean;
+
+  removeTime(): Date;
+
   toJalaliDate(): { year: number; month: number; day: number };
 
   /**
@@ -387,6 +390,10 @@ Date.prototype.toJalaliDate = function (): { year: number; month: number; day: n
 
 Date.prototype.isSameDay = function (valueToCompare: Date): boolean {
   return Genesis.isSameDay(this, valueToCompare);
+};
+
+Date.prototype.removeTime = function (): Date {
+  return Genesis.removeTime(this);
 };
 
 Date.prototype.addDays = function (value: number): Date {

@@ -98,7 +98,7 @@ export declare const hasFlag: (input: any, flag: number) => boolean;
  * */
 export declare const toPersianToomanString: (input: any) => string;
 /**
- * Convert Georgian date to Jalai (persian) date.
+ * Convert Georgian date to Jalali (persian) date.
  * @param input date to convert.
  * @returns returns an object with jalali year, month and day.
  * */
@@ -112,6 +112,10 @@ export declare const toJalaliDate: (input: Date) => {
  * @param valueToCompare a Date value to compare with the original date.
  * */
 export declare const isSameDay: (date1: Date, date2: Date) => boolean;
+/**
+ * Remove tome and returns date with 00:00:00.000 hours.
+ * */
+export declare const removeTime: (date: Date) => Date;
 /**
  * Add some days to a date object.
  * */
@@ -167,6 +171,7 @@ declare const _default: {
         day: number;
     };
     isSameDay: (date1: Date, date2: Date) => boolean;
+    removeTime: (date: Date) => Date;
     addDays: (date: Date, value: number) => Date;
     addHours: (date: Date, value: number) => Date;
     addMinutes: (date: Date, value: number) => Date;

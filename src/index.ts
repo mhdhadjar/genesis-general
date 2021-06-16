@@ -96,6 +96,8 @@ export const toBoolean = (input: any): boolean => {
 export const cleanupNumber = (input: any): number => {
   if (!input) return NaN;
   let s = input.toString();
+  s = s.replace(/[,\s]+/g, "");
+
   s = replaceNumbersToEnglish(s);
   return parseFloat(s);
 };
@@ -166,7 +168,6 @@ export const isValidMobile = (input: any): boolean => {
 export const replaceNumbersToEnglish = (input: any): string => {
   if (input == null) return "";
   let s = input.toString();
-  s = s.replace(/[\s,،]+/g, "");
 
   // Persian standard decimal separator
   // ##### THE CHARACTER IS NOT COMMA ######
@@ -284,7 +285,11 @@ export const hasFlag = (input: any, flag: number): boolean => {
  * */
 export const toPersianToomanString = (input: any): string => {
   if (!input) return "";
-  if (typeof input !== "number") input = parseInt(replaceNumbersToEnglish(input));
+
+  if (typeof input !== "number") {
+    input = input.toString().replace(/[,\s]+/g, "");
+    input = parseInt(replaceNumbersToEnglish(input));
+  }
   if (isNaN(input)) return "";
 
   let val = parseFloat(input.toFixed(0));
@@ -332,7 +337,7 @@ export const toPersianToomanString = (input: any): string => {
 };
 
 /**
- * Convert Georgian date to Jalai (persian) date.
+ * Convert Georgian date to Jalali (persian) date.
  * @param input date to convert.
  * @returns returns an object with jalali year, month and day.
  * */
@@ -453,6 +458,13 @@ export const isSameDay = (date1: Date, date2: Date): boolean => {
   date2.setHours(0, 0, 0, 0);
 
   return date1.getTime() === date2.getTime();
+};
+
+/**
+ * Remove tome and returns date with 00:00:00.000 hours.
+ * */
+export const removeTime = (date: Date): Date => {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 };
 
 /**
@@ -717,6 +729,7 @@ export default {
   toPersianToomanString,
   toJalaliDate,
   isSameDay,
+  removeTime,
   addDays,
   addHours,
   addMinutes,

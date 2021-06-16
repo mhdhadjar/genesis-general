@@ -101,6 +101,9 @@ Date.prototype.toJalaliDate = function () {
 Date.prototype.isSameDay = function (valueToCompare) {
     return Genesis.isSameDay(this, valueToCompare);
 };
+Date.prototype.removeTime = function () {
+    return Genesis.removeTime(this);
+};
 Date.prototype.addDays = function (value) {
     return Genesis.addDays(this, value);
 };

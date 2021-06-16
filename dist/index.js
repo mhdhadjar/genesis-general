@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.isSameDay = exports.toJalaliDate = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToLocalized = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
+exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.removeTime = exports.isSameDay = exports.toJalaliDate = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToLocalized = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
 /**
  * Replace \n characters to html br tags to render as html.
  * @param input The input value to replace.
@@ -105,6 +105,7 @@ var cleanupNumber = function (input) {
     if (!input)
         return NaN;
     var s = input.toString();
+    s = s.replace(/[,\s]+/g, "");
     s = exports.replaceNumbersToEnglish(s);
     return parseFloat(s);
 };
@@ -183,7 +184,6 @@ var replaceNumbersToEnglish = function (input) {
     if (input == null)
         return "";
     var s = input.toString();
-    s = s.replace(/[\s,،]+/g, "");
     // Persian standard decimal separator
     // ##### THE CHARACTER IS NOT COMMA ######
     s = s.replace(/٫/g, ".");
@@ -307,8 +307,10 @@ exports.hasFlag = hasFlag;
 var toPersianToomanString = function (input) {
     if (!input)
         return "";
-    if (typeof input !== "number")
+    if (typeof input !== "number") {
+        input = input.toString().replace(/[,\s]+/g, "");
         input = parseInt(exports.replaceNumbersToEnglish(input));
+    }
     if (isNaN(input))
         return "";
     var val = parseFloat(input.toFixed(0));
@@ -352,7 +354,7 @@ var toPersianToomanString = function (input) {
 };
 exports.toPersianToomanString = toPersianToomanString;
 /**
- * Convert Georgian date to Jalai (persian) date.
+ * Convert Georgian date to Jalali (persian) date.
  * @param input date to convert.
  * @returns returns an object with jalali year, month and day.
  * */
@@ -471,6 +473,13 @@ var isSameDay = function (date1, date2) {
     return date1.getTime() === date2.getTime();
 };
 exports.isSameDay = isSameDay;
+/**
+ * Remove tome and returns date with 00:00:00.000 hours.
+ * */
+var removeTime = function (date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+};
+exports.removeTime = removeTime;
 /**
  * Add some days to a date object.
  * */
@@ -726,6 +735,7 @@ exports.default = {
     toPersianToomanString: exports.toPersianToomanString,
     toJalaliDate: exports.toJalaliDate,
     isSameDay: exports.isSameDay,
+    removeTime: exports.removeTime,
     addDays: exports.addDays,
     addHours: exports.addHours,
     addMinutes: exports.addMinutes,

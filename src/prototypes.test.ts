@@ -173,6 +173,11 @@ it("isSameDay", () => {
   expect(new Date("2021/11/12 11:11:00").isSameDay(new Date("2021/11/11 11:11:00"))).toBe(false);
 });
 
+it("removeTime", () => {
+  expect(new Date("2021/11/11 01:28:33").removeTime().getTime()).toBe(new Date("2021/11/11 00:00:00").getTime());
+  expect(new Date("2021/11/11 00:00:00").removeTime().getTime()).toBe(new Date("2021/11/11 00:00:00").getTime());
+});
+
 it("addValuesToDate", () => {
   expect(new Date("2021/11/11 01:28:33").addDays(2)).toEqual(new Date("2021/11/13 01:28:33"));
   expect(new Date("2021/11/11 01:28:33").addHours(2)).toEqual(new Date("2021/11/11 03:28:33"));

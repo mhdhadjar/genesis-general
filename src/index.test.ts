@@ -126,11 +126,13 @@ it("isValidEmail", () => {
 });
 
 it("replaceNumbersToEnglish", () => {
+  expect(Genesis.replaceNumbersToEnglish("۱۲٫۳۳۶ mins ago")).toBe("12.336 mins ago");
   expect(Genesis.replaceNumbersToEnglish("۱۲٫۳۳۶")).toBe("12.336");
   expect(Genesis.replaceNumbersToEnglish("۰")).toBe("0");
 });
 
 it("replaceNumbersToPersian", () => {
+  expect(Genesis.replaceNumbersToPersian("12.336 mins ago")).toBe("۱۲.۳۳۶ mins ago");
   expect(Genesis.replaceNumbersToPersian("12.336")).toBe("۱۲.۳۳۶");
   expect(Genesis.replaceNumbersToPersian(12.336)).toBe("۱۲.۳۳۶");
   expect(Genesis.replaceNumbersToPersian(126)).toBe("۱۲۶");
@@ -188,6 +190,11 @@ it("isSameDay", () => {
   expect(Genesis.isSameDay(new Date("2021/11/11 01:28:33"), new Date("2021/11/11 07:22:00"))).toBe(true);
   expect(Genesis.isSameDay(new Date("2021/11/11 11:11:00"), new Date("2021/11/11 11:11:00"))).toBe(true);
   expect(Genesis.isSameDay(new Date("2021/11/12 11:11:00"), new Date("2021/11/11 11:11:00"))).toBe(false);
+});
+
+it("removeTime", () => {
+  expect(Genesis.removeTime(new Date("2021/11/11 01:28:33")).getTime()).toBe(new Date("2021/11/11 00:00:00").getTime());
+  expect(Genesis.removeTime(new Date("2021/11/11 00:00:00")).getTime()).toBe(new Date("2021/11/11 00:00:00").getTime());
 });
 
 it("addValuesToDate", () => {

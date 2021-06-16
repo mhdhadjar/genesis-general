@@ -167,6 +167,7 @@ interface Date {
      * @param valueToCompare a Date value to compare with the original date.
      * */
     isSameDay(valueToCompare: Date): boolean;
+    removeTime(): Date;
     toJalaliDate(): {
         year: number;
         month: number;
