@@ -158,6 +158,7 @@ it("truncate", () => {
 });
 
 it("padZero", () => {
+  expect(Genesis.padZero(0)).toBe("00");
   expect(Genesis.padZero("1")).toBe("01");
   expect(Genesis.padZero("2.25")).toBe("02.25");
   expect(Genesis.padZero(1)).toBe("01");

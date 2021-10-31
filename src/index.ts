@@ -262,7 +262,7 @@ export const truncate = (input: any, max: number = 256, side: "start" | "center"
  * @param pad expected number length default is 2.
  * */
 export const padZero = (input: any, pad: number = 2) => {
-  if (!input) return "";
+  if (input == null) return "";
   if (typeof input !== "number") input = parseFloat(input.toString().trim());
   if (isNaN(input)) return "";
   const num: string = input.toString();
