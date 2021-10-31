@@ -280,7 +280,7 @@ exports.truncate = truncate;
  * */
 var padZero = function (input, pad) {
     if (pad === void 0) { pad = 2; }
-    if (!input)
+    if (input == null)
         return "";
     if (typeof input !== "number")
         input = parseFloat(input.toString().trim());
