@@ -1,10 +1,10 @@
 /**
- * Replace \n characters to html br tags to render as html.
+ * Remove dangerous characters and replace \n characters to html br tags to render as html.
  * @param input The input value to replace.
  */
 export const plainTextToHtml = function (input: any): string {
   if (!input) return "";
-  return input.toString().replace(/\n/g, "<br />");
+  return input.toString().replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#039;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br />");
 };
 
 /**
