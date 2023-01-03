@@ -98,6 +98,13 @@ export declare const hasFlag: (input: any, flag: number) => boolean;
  * */
 export declare const toPersianToomanString: (input: any) => string;
 /**
+ * Calculate age by date of birth.
+ * @param dateOfBirth date to calculate.
+ * @param until if you want to calculate age at the specific time e.g. age at the time someone graduated.
+ * @returns returns the actual age.
+ * */
+export declare const calculateAge: (dateOfBirth: Date, until?: Date | undefined) => number;
+/**
  * Convert Georgian date to Jalali (persian) date.
  * @param input date to convert.
  * @returns returns an object with jalali year, month and day.

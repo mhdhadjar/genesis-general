@@ -331,6 +331,21 @@ interface Date {
    * */
   isSameDay(valueToCompare: Date): boolean;
 
+  /**
+   * Calculate age by date of birth.
+   * @param dateOfBirth date to calculate.
+   * @returns returns the actual age.
+   * */
+  calculateAge(dateOfBirth: Date): number;
+
+  /**
+   * Calculate age by date of birth.
+   * @param dateOfBirth date to calculate.
+   * @param until if you want to calculate age at the specific time e.g. age at the time someone graduated.
+   * @returns returns the actual age.
+   * */
+  calculateAge(dateOfBirth: Date, until: Date): number;
+
   removeTime(): Date;
 
   toJalaliDate(): { year: number; month: number; day: number };
@@ -383,6 +398,14 @@ interface Date {
    * */
   toCustomLocaleString(format?: string, culture?: string): string;
 }
+
+Date.prototype.calculateAge = function (dateOfBirth: Date): number {
+  return Genesis.calculateAge(this, dateOfBirth);
+};
+
+Date.prototype.calculateAge = function (dateOfBirth: Date, until?: Date): number {
+  return Genesis.calculateAge(this, dateOfBirth, until);
+};
 
 Date.prototype.toJalaliDate = function (): { year: number; month: number; day: number } {
   return Genesis.toJalaliDate(this);

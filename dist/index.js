@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.removeTime = exports.isSameDay = exports.toJalaliDate = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToLocalized = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
+exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.removeTime = exports.isSameDay = exports.toJalaliDate = exports.calculateAge = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToLocalized = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
 /**
  * Remove dangerous characters and replace \n characters to html br tags to render as html.
  * @param input The input value to replace.
@@ -353,6 +353,23 @@ var toPersianToomanString = function (input) {
     return exports.replaceNumbersToPersian(result);
 };
 exports.toPersianToomanString = toPersianToomanString;
+/**
+ * Calculate age by date of birth.
+ * @param dateOfBirth date to calculate.
+ * @param until if you want to calculate age at the specific time e.g. age at the time someone graduated.
+ * @returns returns the actual age.
+ * */
+var calculateAge = function (dateOfBirth, until) {
+    if (until === void 0) { until = undefined; }
+    var today = until || new Date();
+    var birthDate = new Date(dateOfBirth);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+        age--;
+    return age;
+};
+exports.calculateAge = calculateAge;
 /**
  * Convert Georgian date to Jalali (persian) date.
  * @param input date to convert.

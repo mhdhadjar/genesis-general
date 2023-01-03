@@ -337,6 +337,21 @@ export const toPersianToomanString = (input: any): string => {
 };
 
 /**
+ * Calculate age by date of birth.
+ * @param dateOfBirth date to calculate.
+ * @param until if you want to calculate age at the specific time e.g. age at the time someone graduated.
+ * @returns returns the actual age.
+ * */
+export const calculateAge = (dateOfBirth: Date, until: Date | undefined = undefined) => {
+  var today = until || new Date();
+  var birthDate = new Date(dateOfBirth);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+  return age;
+};
+
+/**
  * Convert Georgian date to Jalali (persian) date.
  * @param input date to convert.
  * @returns returns an object with jalali year, month and day.

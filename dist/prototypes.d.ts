@@ -167,6 +167,19 @@ interface Date {
      * @param valueToCompare a Date value to compare with the original date.
      * */
     isSameDay(valueToCompare: Date): boolean;
+    /**
+     * Calculate age by date of birth.
+     * @param dateOfBirth date to calculate.
+     * @returns returns the actual age.
+     * */
+    calculateAge(dateOfBirth: Date): number;
+    /**
+     * Calculate age by date of birth.
+     * @param dateOfBirth date to calculate.
+     * @param until if you want to calculate age at the specific time e.g. age at the time someone graduated.
+     * @returns returns the actual age.
+     * */
+    calculateAge(dateOfBirth: Date, until: Date): number;
     removeTime(): Date;
     toJalaliDate(): {
         year: number;
