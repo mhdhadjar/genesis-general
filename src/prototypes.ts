@@ -333,18 +333,16 @@ interface Date {
 
   /**
    * Calculate age by date of birth.
-   * @param dateOfBirth date to calculate.
    * @returns returns the actual age.
    * */
-  calculateAge(dateOfBirth: Date): number;
+  calculateAge(): number;
 
   /**
    * Calculate age by date of birth.
-   * @param dateOfBirth date to calculate.
    * @param until if you want to calculate age at the specific time e.g. age at the time someone graduated.
    * @returns returns the actual age.
    * */
-  calculateAge(dateOfBirth: Date, until: Date): number;
+  calculateAge(until: Date): number;
 
   removeTime(): Date;
 
@@ -399,12 +397,12 @@ interface Date {
   toCustomLocaleString(format?: string, culture?: string): string;
 }
 
-Date.prototype.calculateAge = function (dateOfBirth: Date): number {
-  return Genesis.calculateAge(this, dateOfBirth);
+Date.prototype.calculateAge = function (): number {
+  return Genesis.calculateAge(this);
 };
 
-Date.prototype.calculateAge = function (dateOfBirth: Date, until?: Date): number {
-  return Genesis.calculateAge(this, dateOfBirth, until);
+Date.prototype.calculateAge = function (until?: Date): number {
+  return Genesis.calculateAge(this, until);
 };
 
 Date.prototype.toJalaliDate = function (): { year: number; month: number; day: number } {

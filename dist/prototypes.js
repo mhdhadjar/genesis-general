@@ -95,11 +95,11 @@ Number.prototype.hasFlag = function (flag) {
 Number.prototype.toPersianToomanString = function () {
     return Genesis.toPersianToomanString(this);
 };
-Date.prototype.calculateAge = function (dateOfBirth) {
-    return Genesis.calculateAge(this, dateOfBirth);
+Date.prototype.calculateAge = function () {
+    return Genesis.calculateAge(this);
 };
-Date.prototype.calculateAge = function (dateOfBirth, until) {
-    return Genesis.calculateAge(this, dateOfBirth, until);
+Date.prototype.calculateAge = function (until) {
+    return Genesis.calculateAge(this, until);
 };
 Date.prototype.toJalaliDate = function () {
     return Genesis.toJalaliDate(this);
