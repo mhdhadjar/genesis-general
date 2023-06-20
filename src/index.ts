@@ -235,6 +235,38 @@ export const replaceNumbersToLocalized = (input: any, cultureName?: string): str
 };
 
 /**
+ * Get a suffix for ordinal values such as st, nd, rd & th.
+ * @param input value to calculate.
+ * */
+export const getOrdinalSuffix = (input: any): string => {
+  if (input == null) return "";
+  if (typeof input !== "number") input = parseFloat(input.toString().trim());
+
+  const j = input % 10;
+  const k = input % 100;
+  if (j == 1 && k != 11) return "st";
+  if (j == 2 && k != 12) return "nd";
+  if (j == 3 && k != 13) return "rd";
+  return "th";
+};
+
+/**
+ * Convert number to ordinal values such as 1st, 32nd, 33rd & 35th.
+ * @param input value to calculate.
+ * */
+export const toOrdinalString = (input: any): string => {
+  if (input == null) return "";
+  if (typeof input !== "number") input = parseFloat(input.toString().trim());
+
+  const j = input % 10;
+  const k = input % 100;
+  if (j == 1 && k != 11) return `${input}st`;
+  if (j == 2 && k != 12) return `${input}nd`;
+  if (j == 3 && k != 13) return `${input}rd`;
+  return `${input}th`;
+};
+
+/**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
  * @param max given value as maximum length.

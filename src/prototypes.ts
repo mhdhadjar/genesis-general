@@ -131,6 +131,12 @@ interface String {
    * Convert persian rials value to a tooman string.
    * */
   toPersianToomanString(): string;
+
+  /**
+   * Convert number to ordinal values such as 1st, 32nd, 33rd & 35th.
+   * @param input value to calculate.
+   * */
+  toOrdinalString(): string;
 }
 
 String.prototype.plainTextToHtml = function (): string {
@@ -204,6 +210,10 @@ String.prototype.padZero = function (pad: number = 2): string {
 
 String.prototype.toPersianToomanString = function (): string {
   return Genesis.toPersianToomanString(this);
+};
+
+String.prototype.toOrdinalString = function (): string {
+  return Genesis.toOrdinalString(this);
 };
 
 //#endregion
