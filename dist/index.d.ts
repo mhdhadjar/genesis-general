@@ -8,7 +8,7 @@ export declare const plainTextToHtml: (input: any) => string;
  * @param input source object to convert.
  * @param defaultValue If conversion failed, then returns this value.
  */
-export declare const toDate: (input: any, defaultValue?: Date | undefined) => Date | undefined;
+export declare const toDate: (input: any, defaultValue?: Date) => Date | undefined;
 /**
  * Split camel case string and return separated words.
  * @param input The camel cased string to split.
@@ -72,7 +72,17 @@ export declare const replaceNumbersToPersian: (input: any) => string;
  * @param input value to convert.
  * @param cultureName target number format.
  * */
-export declare const replaceNumbersToLocalized: (input: any, cultureName?: string | undefined) => string;
+export declare const replaceNumbersToLocalized: (input: any, cultureName?: string) => string;
+/**
+ * Get a suffix for ordinal values such as st, nd, rd & th.
+ * @param input value to calculate.
+ * */
+export declare const getOrdinalSuffix: (input: any) => string;
+/**
+ * Convert number to ordinal values such as 1st, 32nd, 33rd & 35th.
+ * @param input value to calculate.
+ * */
+export declare const toOrdinalString: (input: any) => string;
 /**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
@@ -155,7 +165,7 @@ export declare const toTimeAgo: (date: Date, culture?: string) => string;
 export declare const toCustomLocaleString: (date: Date, format?: string, culture?: string) => string;
 declare const _default: {
     plainTextToHtml: (input: any) => string;
-    toDate: (input: any, defaultValue?: Date | undefined) => Date | undefined;
+    toDate: (input: any, defaultValue?: Date) => Date;
     splitCamelCase: (input: any, separator?: string) => string;
     digitGrouping: (input: any) => string;
     toDecimal: (input: any) => number;
@@ -167,7 +177,7 @@ declare const _default: {
     isValidEmail: (input: any) => boolean;
     replaceNumbersToEnglish: (input: any) => string;
     replaceNumbersToPersian: (input: any) => string;
-    replaceNumbersToLocalized: (input: any, cultureName?: string | undefined) => string;
+    replaceNumbersToLocalized: (input: any, cultureName?: string) => string;
     truncate: (input: any, max?: number, side?: "start" | "center" | "end") => string;
     padZero: (input: any, pad?: number) => string;
     hasFlag: (input: any, flag: number) => boolean;

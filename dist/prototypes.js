@@ -1,4 +1,3 @@
-"use strict";
 var Genesis = require("./index");
 String.prototype.plainTextToHtml = function () {
     if (!this)
@@ -60,6 +59,9 @@ String.prototype.padZero = function (pad) {
 };
 String.prototype.toPersianToomanString = function () {
     return Genesis.toPersianToomanString(this);
+};
+String.prototype.toOrdinalString = function () {
+    return Genesis.toOrdinalString(this);
 };
 Number.prototype.toDate = function () {
     return Genesis.toDate(this);
@@ -141,3 +143,4 @@ Boolean.prototype.cleanupNumber = function () {
     return Genesis.cleanupNumber(this);
 };
 //#endregion
+//# sourceMappingURL=prototypes.js.map

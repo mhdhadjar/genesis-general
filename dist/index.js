@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.removeTime = exports.isSameDay = exports.toJalaliDate = exports.calculateAge = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.replaceNumbersToLocalized = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
+exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.removeTime = exports.isSameDay = exports.toJalaliDate = exports.calculateAge = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.toOrdinalString = exports.getOrdinalSuffix = exports.replaceNumbersToLocalized = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
 /**
  * Remove dangerous characters and replace \n characters to html br tags to render as html.
  * @param input The input value to replace.
@@ -247,6 +247,46 @@ var replaceNumbersToLocalized = function (input, cultureName) {
     }
 };
 exports.replaceNumbersToLocalized = replaceNumbersToLocalized;
+/**
+ * Get a suffix for ordinal values such as st, nd, rd & th.
+ * @param input value to calculate.
+ * */
+var getOrdinalSuffix = function (input) {
+    if (input == null)
+        return "";
+    if (typeof input !== "number")
+        input = parseFloat(input.toString().trim());
+    var j = input % 10;
+    var k = input % 100;
+    if (j == 1 && k != 11)
+        return "st";
+    if (j == 2 && k != 12)
+        return "nd";
+    if (j == 3 && k != 13)
+        return "rd";
+    return "th";
+};
+exports.getOrdinalSuffix = getOrdinalSuffix;
+/**
+ * Convert number to ordinal values such as 1st, 32nd, 33rd & 35th.
+ * @param input value to calculate.
+ * */
+var toOrdinalString = function (input) {
+    if (input == null)
+        return "";
+    if (typeof input !== "number")
+        input = parseFloat(input.toString().trim());
+    var j = input % 10;
+    var k = input % 100;
+    if (j == 1 && k != 11)
+        return input + "st";
+    if (j == 2 && k != 12)
+        return input + "nd";
+    if (j == 3 && k != 13)
+        return input + "rd";
+    return input + "th";
+};
+exports.toOrdinalString = toOrdinalString;
 /**
  * If the length of the string is less than or equal to the given number, just return the string without truncating it. Otherwise, truncate the string.
  * @param input string value to truncate.
@@ -761,3 +801,4 @@ exports.default = {
     toTimeAgo: exports.toTimeAgo,
     toCustomLocaleString: exports.toCustomLocaleString,
 };
+//# sourceMappingURL=index.js.map
