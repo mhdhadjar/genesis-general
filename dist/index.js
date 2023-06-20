@@ -800,5 +800,7 @@ exports.default = {
     addMilliseconds: exports.addMilliseconds,
     toTimeAgo: exports.toTimeAgo,
     toCustomLocaleString: exports.toCustomLocaleString,
+    getOrdinalSuffix: exports.getOrdinalSuffix,
+    toOrdinalString: exports.toOrdinalString,
 };
 //# sourceMappingURL=index.js.map

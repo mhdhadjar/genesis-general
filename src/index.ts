@@ -784,4 +784,6 @@ export default {
   addMilliseconds,
   toTimeAgo,
   toCustomLocaleString,
+  getOrdinalSuffix,
+  toOrdinalString,
 };

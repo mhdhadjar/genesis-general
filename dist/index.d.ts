@@ -196,5 +196,7 @@ declare const _default: {
     addMilliseconds: (date: Date, value: number) => Date;
     toTimeAgo: (date: Date, culture?: string) => string;
     toCustomLocaleString: (date: Date, format?: string, culture?: string) => string;
+    getOrdinalSuffix: (input: any) => string;
+    toOrdinalString: (input: any) => string;
 };
 export default _default;
