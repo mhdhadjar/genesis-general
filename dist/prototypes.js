@@ -63,6 +63,9 @@ String.prototype.toPersianToomanString = function () {
 String.prototype.toOrdinalString = function () {
     return Genesis.toOrdinalString(this);
 };
+String.prototype.getOrdinalSuffix = function () {
+    return Genesis.getOrdinalSuffix(this);
+};
 Number.prototype.toDate = function () {
     return Genesis.toDate(this);
 };
@@ -96,6 +99,12 @@ Number.prototype.hasFlag = function (flag) {
 };
 Number.prototype.toPersianToomanString = function () {
     return Genesis.toPersianToomanString(this);
+};
+Number.prototype.toOrdinalString = function () {
+    return Genesis.toOrdinalString(this);
+};
+Number.prototype.getOrdinalSuffix = function () {
+    return Genesis.getOrdinalSuffix(this);
 };
 Date.prototype.calculateAge = function () {
     return Genesis.calculateAge(this);

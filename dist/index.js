@@ -60,9 +60,11 @@ var digitGrouping = function (input) {
         return "";
     if (typeof input !== "string")
         input = input.toString();
+    if (input <= 0)
+        return input.toString();
     input = input.trim();
     input = input.replace(/,/g, "");
-    input = exports.replaceNumbersToEnglish(input);
+    input = (0, exports.replaceNumbersToEnglish)(input);
     if (!/^([0-9]+)(\.[0-9]+)?$/.test(input))
         return "";
     var parts = input.split(".");
@@ -81,7 +83,7 @@ var toDecimal = function (input) {
     var s = input.toString().trim();
     if (!s)
         return 0;
-    s = exports.replaceNumbersToEnglish(s);
+    s = (0, exports.replaceNumbersToEnglish)(s);
     s = s.replace(/[,()]/g, "");
     return parseFloat(s);
 };
@@ -106,7 +108,7 @@ var cleanupNumber = function (input) {
         return NaN;
     var s = input.toString();
     s = s.replace(/[,\s]+/g, "");
-    s = exports.replaceNumbersToEnglish(s);
+    s = (0, exports.replaceNumbersToEnglish)(s);
     return parseFloat(s);
 };
 exports.cleanupNumber = cleanupNumber;
@@ -131,7 +133,7 @@ var isValidEmail = function (input) {
     var s = input.toString();
     if (!s)
         return false;
-    s = exports.cleanupEmail(s);
+    s = (0, exports.cleanupEmail)(s);
     return /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/.test(s);
 };
 exports.isValidEmail = isValidEmail;
@@ -148,15 +150,15 @@ var cleanupMobile = function (input, defaultCountryCode) {
     if (typeof s !== "string")
         s = s.toString();
     s = s.replace(/[()\-_[\]]+/g, "");
-    s = exports.cleanupNumber(s.toString()).toString();
+    s = (0, exports.cleanupNumber)(s.toString()).toString();
     if (s.length === 10)
         s = defaultCountryCode + s;
     if (!/^(00|\+)/.test(s))
-        s = "00" + s;
+        s = "00".concat(s);
     if (/^0[0-9]{10,10}$/.test(s))
-        s = "+1" + s.substring(1);
+        s = "+1".concat(s.substring(1));
     if (/^00/.test(s))
-        s = "+" + s.substring(2);
+        s = "+".concat(s.substring(2));
     if (/^\+[0-9]{11,16}$/.test(s))
         return s;
     return "";
@@ -172,7 +174,7 @@ var isValidMobile = function (input) {
     var s = input.toString();
     if (!s)
         return false;
-    s = exports.cleanupMobile(s);
+    s = (0, exports.cleanupMobile)(s);
     return /^(00|\+)([0-9]{1,4}[0-9]{10,10})$/.test(s);
 };
 exports.isValidMobile = isValidMobile;
@@ -239,9 +241,9 @@ var replaceNumbersToLocalized = function (input, cultureName) {
     var lang = parts[0];
     switch (lang) {
         case "fa":
-            return exports.replaceNumbersToPersian(s);
+            return (0, exports.replaceNumbersToPersian)(s);
         case "en":
-            return exports.replaceNumbersToEnglish(s);
+            return (0, exports.replaceNumbersToEnglish)(s);
         default:
             return s;
     }
@@ -279,12 +281,12 @@ var toOrdinalString = function (input) {
     var j = input % 10;
     var k = input % 100;
     if (j == 1 && k != 11)
-        return input + "st";
+        return "".concat(input, "st");
     if (j == 2 && k != 12)
-        return input + "nd";
+        return "".concat(input, "nd");
     if (j == 3 && k != 13)
-        return input + "rd";
-    return input + "th";
+        return "".concat(input, "rd");
+    return "".concat(input, "th");
 };
 exports.toOrdinalString = toOrdinalString;
 /**
@@ -304,12 +306,12 @@ var truncate = function (input, max, side) {
     var ellipsis = "…";
     switch (side) {
         case "start":
-            return ellipsis + " " + str.substring(str.length - max).trim();
+            return "".concat(ellipsis, " ").concat(str.substring(str.length - max).trim());
         case "end":
-            return str.substring(0, max).trim() + " " + ellipsis;
+            return "".concat(str.substring(0, max).trim(), " ").concat(ellipsis);
         case "center":
             var half = Math.floor(max / 2);
-            return str.substring(0, half).trim() + " " + ellipsis + " " + str.substring(str.length - half).trim();
+            return "".concat(str.substring(0, half).trim(), " ").concat(ellipsis, " ").concat(str.substring(str.length - half).trim());
     }
 };
 exports.truncate = truncate;
@@ -349,7 +351,7 @@ var toPersianToomanString = function (input) {
         return "";
     if (typeof input !== "number") {
         input = input.toString().replace(/[,\s]+/g, "");
-        input = parseInt(exports.replaceNumbersToEnglish(input));
+        input = parseInt((0, exports.replaceNumbersToEnglish)(input));
     }
     if (isNaN(input))
         return "";
@@ -372,15 +374,15 @@ var toPersianToomanString = function (input) {
     var hundreds = numInToomans;
     var result = "";
     if (trillions > 0)
-        result += trillions + " \u0647\u0632\u0627\u0631 \u0645\u06CC\u0644\u06CC\u0627\u0631\u062F \u0648 ";
+        result += "".concat(trillions, " \u0647\u0632\u0627\u0631 \u0645\u06CC\u0644\u06CC\u0627\u0631\u062F \u0648 ");
     if (billions > 0)
-        result += billions + " \u0645\u06CC\u0644\u06CC\u0627\u0631\u062F \u0648 ";
+        result += "".concat(billions, " \u0645\u06CC\u0644\u06CC\u0627\u0631\u062F \u0648 ");
     if (millions > 0)
-        result += millions + " \u0645\u06CC\u0644\u06CC\u0648\u0646 \u0648 ";
+        result += "".concat(millions, " \u0645\u06CC\u0644\u06CC\u0648\u0646 \u0648 ");
     if (thousands > 0)
-        result += thousands + " \u0647\u0632\u0627\u0631 \u0648 ";
+        result += "".concat(thousands, " \u0647\u0632\u0627\u0631 \u0648 ");
     if (hundreds > 0)
-        result += "" + hundreds;
+        result += "".concat(hundreds);
     if (result.endsWith(" و "))
         result = result.substring(0, result.length - 3);
     if (result.length > 0)
@@ -388,9 +390,9 @@ var toPersianToomanString = function (input) {
     if (rialsPart !== 0) {
         if (result.length > 0)
             result += " \u0648 ";
-        result += rialsPart + " \u0631\u06CC\u0627\u0644";
+        result += "".concat(rialsPart, " \u0631\u06CC\u0627\u0644");
     }
-    return exports.replaceNumbersToPersian(result);
+    return (0, exports.replaceNumbersToPersian)(result);
 };
 exports.toPersianToomanString = toPersianToomanString;
 /**
@@ -635,7 +637,7 @@ var toTimeAgo = function (date, culture) {
     if (value !== 1 && !isPersian)
         unit = unit + "s";
     var result = value + " " + unit + " " + direction;
-    return isPersian ? exports.replaceNumbersToPersian(result) : result;
+    return isPersian ? (0, exports.replaceNumbersToPersian)(result) : result;
 };
 exports.toTimeAgo = toTimeAgo;
 /**
@@ -668,17 +670,17 @@ var toCustomLocaleString = function (date, format, culture) {
         longMonthNames = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"];
         shortMonthNames = longMonthNames;
         longWeekDays = [
-            "یکشنبه",
-            "دوشنبه",
-            "سه‌شنبه",
-            "چهارشنبه",
-            "پنج‌شنبه",
-            "جمعه",
+            "یکشنبه", //
+            "دوشنبه", //
+            "سه‌شنبه", //
+            "چهارشنبه", //
+            "پنج‌شنبه", //
+            "جمعه", //
             "شنبه",
         ];
         shortWeekDays = longWeekDays;
         amPm = ["صبح", "عصر"];
-        var jalali = exports.toJalaliDate(date);
+        var jalali = (0, exports.toJalaliDate)(date);
         year = jalali.year;
         month = jalali.month;
         day = jalali.day;
@@ -706,7 +708,7 @@ var toCustomLocaleString = function (date, format, culture) {
                 newVal = shortMonthNames[month - 1] || datePart;
                 break;
             case "MM":
-                newVal = exports.padZero(month, 2) || datePart;
+                newVal = (0, exports.padZero)(month, 2) || datePart;
                 break;
             case "M":
                 newVal = month.toString() || datePart;
@@ -721,33 +723,33 @@ var toCustomLocaleString = function (date, format, culture) {
                 break;
             case "dd":
             case "DD":
-                newVal = exports.padZero(day, 2) || datePart;
+                newVal = (0, exports.padZero)(day, 2) || datePart;
                 break;
             case "d":
             case "D":
                 newVal = day.toString() || datePart;
                 break;
             case "HH":
-                newVal = exports.padZero(hours, 2) || datePart;
+                newVal = (0, exports.padZero)(hours, 2) || datePart;
                 break;
             case "H":
                 newVal = hours.toString() || datePart;
                 break;
             case "hh":
-                newVal = exports.padZero(twelveHours, 2) || datePart;
+                newVal = (0, exports.padZero)(twelveHours, 2) || datePart;
                 break;
             case "h":
                 newVal = twelveHours.toString() || datePart;
                 break;
             case "mm":
-                newVal = exports.padZero(minutes, 2) || datePart;
+                newVal = (0, exports.padZero)(minutes, 2) || datePart;
                 break;
             case "m":
                 newVal = minutes.toString() || datePart;
                 break;
             case "SS":
             case "ss":
-                newVal = exports.padZero(seconds, 2) || datePart;
+                newVal = (0, exports.padZero)(seconds, 2) || datePart;
                 break;
             case "S":
             case "s":
@@ -767,7 +769,7 @@ var toCustomLocaleString = function (date, format, culture) {
         result += newVal + (isLast ? "" : formatSeparators[i]);
     }
     if ((culture || "") === "fa-IR")
-        return exports.replaceNumbersToPersian(result);
+        return (0, exports.replaceNumbersToPersian)(result);
     return result;
 };
 exports.toCustomLocaleString = toCustomLocaleString;

@@ -53,6 +53,8 @@ export const digitGrouping = (input: any): string => {
 
   if (typeof input !== "string") input = input.toString();
 
+  if (input <= 0) return input.toString();
+
   input = input.trim();
   input = input.replace(/,/g, "");
   input = replaceNumbersToEnglish(input);

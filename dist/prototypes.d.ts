@@ -111,6 +111,7 @@ interface String {
      * @param input value to calculate.
      * */
     toOrdinalString(): string;
+    getOrdinalSuffix(): string;
 }
 interface Number {
     /**
@@ -166,14 +167,15 @@ interface Number {
      * */
     toPersianToomanString(): string;
     /**
-     * Convert persian rials value to a tooman string.
-     * */
-    toPersianToomanString(): string;
-    /**
      * Convert number to ordinal values such as 1st, 32nd, 33rd & 35th.
      * @param input value to calculate.
      * */
     toOrdinalString(): string;
+    /**
+     * Convert number to ordinal values such as 1st, 32nd, 33rd & 35th.
+     * @param input value to calculate.
+     * */
+    getOrdinalSuffix(): string;
 }
 interface Date {
     /**

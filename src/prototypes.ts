@@ -137,6 +137,8 @@ interface String {
    * @param input value to calculate.
    * */
   toOrdinalString(): string;
+
+  getOrdinalSuffix(): string;
 }
 
 String.prototype.plainTextToHtml = function (): string {
@@ -216,6 +218,9 @@ String.prototype.toOrdinalString = function (): string {
   return Genesis.toOrdinalString(this);
 };
 
+String.prototype.getOrdinalSuffix = function (): string {
+  return Genesis.getOrdinalSuffix(this);
+};
 //#endregion
 
 //#region Number Prototypes ###############################################################
@@ -286,15 +291,16 @@ interface Number {
   toPersianToomanString(): string;
 
   /**
-   * Convert persian rials value to a tooman string.
+   * Convert number to ordinal values such as 1st, 32nd, 33rd & 35th.
+   * @param input value to calculate.
    * */
-  toPersianToomanString(): string;
+  toOrdinalString(): string;
 
   /**
    * Convert number to ordinal values such as 1st, 32nd, 33rd & 35th.
    * @param input value to calculate.
    * */
-  toOrdinalString(): string;
+  getOrdinalSuffix(): string;
 }
 
 Number.prototype.toDate = function (): Date | undefined {
@@ -339,6 +345,14 @@ Number.prototype.hasFlag = function (flag: number): boolean {
 
 Number.prototype.toPersianToomanString = function (): string {
   return Genesis.toPersianToomanString(this);
+};
+
+Number.prototype.toOrdinalString = function (): string {
+  return Genesis.toOrdinalString(this);
+};
+
+Number.prototype.getOrdinalSuffix = function (): string {
+  return Genesis.getOrdinalSuffix(this);
 };
 
 //#endregion

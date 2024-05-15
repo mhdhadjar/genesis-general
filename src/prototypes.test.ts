@@ -22,6 +22,7 @@ it("splitCamelCase", () => {
 });
 
 it("digitGrouping", () => {
+  expect("-12.1".digitGrouping()).toBe("-12.1");
   expect("12.1".digitGrouping()).toBe("12.1");
   expect((1271.1).digitGrouping()).toBe("1,271.1");
   expect("1271.1".digitGrouping()).toBe("1,271.1");
@@ -204,4 +205,18 @@ it("toCustomLocaleString", () => {
 
   expect(new Date(2021, 7, 7).toCustomLocaleString("yyyy/MM/dd", "fa-IR")).toBe("۱۴۰۰/۰۵/۱۶");
   expect(new Date(2021, 7, 7).toCustomLocaleString("dddd d MMMM yyyy", "fa-IR")).toBe("شنبه ۱۶ مرداد ۱۴۰۰");
+});
+
+it("getOrdinalSuffix", () => {
+  expect((1).getOrdinalSuffix()).toBe("st");
+  expect((2).getOrdinalSuffix()).toBe("nd");
+  expect((3).getOrdinalSuffix()).toBe("rd");
+  expect((4).getOrdinalSuffix()).toBe("th");
+});
+
+it("getOrdinalSuffix", () => {
+  expect((1).toOrdinalString()).toBe("1st");
+  expect((2).toOrdinalString()).toBe("2nd");
+  expect((3).toOrdinalString()).toBe("3rd");
+  expect((4).toOrdinalString()).toBe("4th");
 });
