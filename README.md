@@ -7,6 +7,12 @@ Genesis is a helper library that provides useful methods and prototypes for Java
 npm i @genesis/general@github:mhdhadjar/genesis-general
 ```
 
+## Updating
+```
+npm un @genesis/general && npm i @genesis/general@github:mhdhadjar/genesis-general
+```
+
+
 ### Prototypes
 Import prototypes to a top level file e.g. index.js or app.js to use prototypes.
 
