@@ -1,6 +1,6 @@
 /**
  * Remove dangerous characters and replace \n characters to html br tags to render as html.
- * @param input The input value to replace.
+ * @param input The input value to  replace.
  */
 export const plainTextToHtml = function (input: any): string {
   if (!input) return "";

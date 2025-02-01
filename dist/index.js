@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.toCustomLocaleString = exports.toTimeAgo = exports.addMilliseconds = exports.addSeconds = exports.addMinutes = exports.addHours = exports.addDays = exports.removeTime = exports.isSameDay = exports.toJalaliDate = exports.calculateAge = exports.toPersianToomanString = exports.hasFlag = exports.padZero = exports.truncate = exports.toOrdinalString = exports.getOrdinalSuffix = exports.replaceNumbersToLocalized = exports.replaceNumbersToPersian = exports.replaceNumbersToEnglish = exports.isValidMobile = exports.cleanupMobile = exports.isValidEmail = exports.cleanupEmail = exports.cleanupNumber = exports.toBoolean = exports.toDecimal = exports.digitGrouping = exports.splitCamelCase = exports.toDate = exports.plainTextToHtml = void 0;
 /**
  * Remove dangerous characters and replace \n characters to html br tags to render as html.
- * @param input The input value to replace.
+ * @param input The input value to  replace.
  */
 var plainTextToHtml = function (input) {
     if (!input)
